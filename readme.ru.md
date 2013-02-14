@@ -11,7 +11,8 @@ jsTabs
 -------------
 В html файле:
 
-    <!-- подключение -->
+```html
+<!-- подключение -->
     <link rel="stylesheet" type="text/css" href="tabs.css">
     <script type="text/javascript" src="tabs.js"></script>
 
@@ -30,12 +31,13 @@ jsTabs
         </section>
 
     <!-- конец табов -->
+```
 
 Инициализировать табы для такого html нужно так:
 
-    ```javaScript
-    var main_tabs = new Tabs('main_tabs');  //'main_tabs' - your Tabs container id's
-    ```
+```javaScript
+var main_tabs = new Tabs('main_tabs');  //'main_tabs' - your Tabs container id's
+```
 
 [demo](http://sbox.pp.ua/jstabs/demo.html)
 

@@ -7,10 +7,11 @@ I use it only in Google Chrome extensions.
 - Don't work in IE
 
 Usage
--------------
+-----
 In your html file:
 
-    <!--  -->
+```html
+<!--  -->
     <link rel="stylesheet" type="text/css" href="tabs.css">
     <script type="text/javascript" src="tabs.js"></script>
 
@@ -27,14 +28,14 @@ In your html file:
                 <div id="tab">Tab2 content</div>
             </div>
         </section>
-
     <!-- Tabs end -->
+```
 
 Init Tabs:
 
-    ```javaScript
-    var main_tabs = new Tabs('main_tabs');  //'main_tabs' - your Tabs container id's
-    ```
+```javaScript
+var main_tabs = new Tabs('main_tabs');  //'main_tabs' - your Tabs container id's
+```
 
 [demo](http://sbox.pp.ua/jstabs/demo.html)
 
