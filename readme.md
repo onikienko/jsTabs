@@ -34,7 +34,8 @@ In your html file:
 Init Tabs:
 
 ```javaScript
-var main_tabs = new Tabs('main_tabs');  //'main_tabs' - your Tabs container id's
+var main_tabs = new Tabs('#main_tabs');  //'main_tabs' - your Tabs container id's
+    main_tabs.toggle('#tab2'); //make tab2 active (first tab by default)
 ```
 
 [demo](http://sbox.pp.ua/jstabs/demo.html)

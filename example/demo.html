@@ -110,11 +110,13 @@
         <ul class="tabs_nav">
             <li><a href="#ya1">Another Tab 1</a></li>
             <li><a href="#ya2">Another Tab 2</a></li>
+            <li><a href="#ya3">Another Tab 3</a></li>
         </ul>
 
         <div class="tabs_content">
             <div id="ya1">Tab1 content</div>
             <div id="ya2">Tab2 content</div>
+            <div id="ya3">Tab3 content</div>
         </div>
     </section>
 
@@ -128,8 +130,9 @@
 <script type="text/javascript" src="tabs.js"></script>
 
 <script>
-    var main_tabs = new Tabs('main_tabs'),
-        ya_tabs = new Tabs('ya_tabs');
+    var main_tabs = new Tabs('#main_tabs'),
+        ya_tabs = new Tabs('#ya_tabs');
+    ya_tabs.toggle('#ya2'); //make ya3 tab active
 </script>
 
 </body>
