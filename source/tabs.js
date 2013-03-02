@@ -1,29 +1,29 @@
 /**
  * jsTabs. No jQuery. Do not work with IE
  * https://github.com/onikienko/jsTabs
- * @version 0.2
+ * @version 0.2.1
  *
- * @param {string} tabs_id   ID of Tabs container 
+ * @param {string} tabs_id   ID of Tabs container
  * @constructor
  */
 function Tabs(tabs_id) {
     this.html = document.querySelector(tabs_id);
     this.nav_links = this.html.querySelectorAll('.tabs_nav li a');
-    this.nav_links_array = [];
-    this.activate();
+    var self = this;
+    this.nav_links_array = (function () {
+        var arr = [];
+        [].forEach.call(self.nav_links, function (el) {
+            arr.push(el.hash);
+        });
+        return arr;
+    }());
+    this.activate_();
 }
 Tabs.prototype = {
-    findHashList: function () {
-        var i,
-            length;
-        for (i = 0, length = this.nav_links.length; i < length; i++) {
-            this.nav_links_array[i] = this.nav_links[i].hash;
-        }
-    },
     toggle: function (tab_name) {
         if (tab_name.indexOf(this.nav_links_array)) {
             [].forEach.call(this.html.querySelectorAll('.tabs_content div'), function (el) {
-                el.style.display =  ('#' + el.id === tab_name) ? 'block' : 'none';
+                el.style.display = ('#' + el.id === tab_name) ? 'block' : 'none';
             });
             [].forEach.call(this.nav_links, function (el) {
                 if (el.hash === tab_name) {
@@ -34,7 +34,7 @@ Tabs.prototype = {
             });
         }
     },
-    events: function () {
+    events_: function () {
         var self = this;
         self.html.querySelector('.tabs_nav').onclick = function (e) {
             var hash = e.target.hash;
@@ -44,13 +44,14 @@ Tabs.prototype = {
             return false;
         };
     },
-    activate: function () {
-        var hash = window.location.hash;
-        this.findHashList();
-        if (!hash || this.nav_links_array.indexOf(hash) === -1) {
-            hash = this.nav_links[0].hash;
+    activate_: function () {
+        if (this.nav_links_array.length > 0) {
+            var hash = window.location.hash;
+            if (!hash || this.nav_links_array.indexOf(hash) === -1) {
+                hash = this.nav_links[0].hash;
+            }
+            this.toggle(hash);
+            this.events_();
         }
-        this.toggle(hash);
-        this.events();
     }
 };
