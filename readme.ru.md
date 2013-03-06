@@ -25,8 +25,8 @@ jsTabs
             </ul>
 
             <div class="tabs_content">
-                <div id="tab">Tab1 content</div>
-                <div id="tab">Tab2 content</div>
+                <div id="tab1">Tab1 content</div>
+                <div id="tab2">Tab2 content</div>
             </div>
         </section>
 
