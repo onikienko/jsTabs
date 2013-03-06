@@ -1,9 +1,9 @@
 /**
  * jsTabs. No jQuery. Do not work with IE
  * https://github.com/onikienko/jsTabs
- * @version 0.2.1
+ * @version 0.2.2
  *
- * @param {string} tabs_id   ID of Tabs container
+ * @param {string} tabs_id   ID of Tabs container with #
  * @constructor
  */
 function Tabs(tabs_id) {
@@ -21,7 +21,7 @@ function Tabs(tabs_id) {
 }
 Tabs.prototype = {
     toggle: function (tab_name) {
-        if (tab_name.indexOf(this.nav_links_array)) {
+        if (tab_name && tab_name.indexOf(this.nav_links_array)) {
             [].forEach.call(this.html.querySelectorAll('.tabs_content div'), function (el) {
                 el.style.display = ('#' + el.id === tab_name) ? 'block' : 'none';
             });
@@ -36,13 +36,13 @@ Tabs.prototype = {
     },
     events_: function () {
         var self = this;
-        self.html.querySelector('.tabs_nav').onclick = function (e) {
+        self.html.querySelector('.tabs_nav').addEventListener('click',  function (e) {
             var hash = e.target.hash;
             if (hash && self.nav_links_array.indexOf(hash) !== -1 && !e.target.parentElement.classList.contains('active')) {
                 self.toggle(hash);
             }
-            return false;
-        };
+            e.preventDefault();
+        }, false);
     },
     activate_: function () {
         if (this.nav_links_array.length > 0) {
