@@ -1,12 +1,13 @@
 /**
  * jsTabs. No jQuery. Do not work with IE
  * https://github.com/onikienko/jsTabs
- * @version 0.2.2
+ * @version 0.3
  *
- * @param {string} tabs_id   ID of Tabs container with #
+ * @param {string} tabs_id  ID of Tabs container with #
+ * @param {function|object} [handlers] onToggle handlers.
  * @constructor
  */
-function Tabs(tabs_id) {
+function Tabs(tabs_id, handlers) {
     this.html = document.querySelector(tabs_id);
     this.nav_links = this.html.querySelectorAll('.tabs_nav li a');
     var self = this;
@@ -17,11 +18,25 @@ function Tabs(tabs_id) {
         });
         return arr;
     }());
-    this.activate_();
+    if (handlers) {
+        this.onToggle(handlers);
+    }
+    this.go_();
 }
+
 Tabs.prototype = {
+    ontoggle_handlers_list_: {},
+
+    fireOnToggle_: function (tab_name) {
+        if (this.ontoggle_handlers_list_.hasOwnProperty(tab_name) && this.ontoggle_handlers_list_[tab_name].length > 0) {
+            this.ontoggle_handlers_list_[tab_name].forEach(function (handler) {
+                handler(tab_name);
+            });
+        }
+    },
+
     toggle: function (tab_name) {
-        if (tab_name && tab_name.indexOf(this.nav_links_array)) {
+        if (tab_name && this.nav_links_array.indexOf(tab_name) !== -1) {
             [].forEach.call(this.html.querySelectorAll('.tabs_content div'), function (el) {
                 el.style.display = ('#' + el.id === tab_name) ? 'block' : 'none';
             });
@@ -32,26 +47,58 @@ Tabs.prototype = {
                     el.parentNode.classList.remove('active');
                 }
             });
+            this.fireOnToggle_(tab_name);
         }
     },
-    events_: function () {
+
+    /**
+     *
+     * @param {function|object} handlers {'#tab_name': handler_function} or a single function to bind it on every toggle
+     */
+    onToggle: function (handlers) {
+        var tab,
+            self = this;
+
+        function addHandler(tab_name, handler) {
+            if (!self.ontoggle_handlers_list_[tab_name]) {
+                self.ontoggle_handlers_list_[tab_name] = [];
+            }
+            self.ontoggle_handlers_list_[tab_name].push(handler);
+        }
+
+        if (typeof handlers === 'function') {
+            this.nav_links_array.forEach(function (el) {
+                addHandler(el, handlers);
+            });
+        } else if (typeof handlers === 'object') {
+            for (tab in handlers) {
+                if (this.nav_links_array.indexOf(tab) !== -1) {
+                    addHandler(tab, handlers[tab]);
+                }
+            }
+        }
+    },
+
+    onNavClick_: function () {
         var self = this;
-        self.html.querySelector('.tabs_nav').addEventListener('click',  function (e) {
+        self.html.querySelector('.tabs_nav').addEventListener('click', function (e) {
             var hash = e.target.hash;
             if (hash && self.nav_links_array.indexOf(hash) !== -1 && !e.target.parentElement.classList.contains('active')) {
                 self.toggle(hash);
             }
             e.preventDefault();
+            e.stopPropagation();
         }, false);
     },
-    activate_: function () {
+
+    go_: function () {
         if (this.nav_links_array.length > 0) {
             var hash = window.location.hash;
             if (!hash || this.nav_links_array.indexOf(hash) === -1) {
                 hash = this.nav_links[0].hash;
             }
             this.toggle(hash);
-            this.events_();
+            this.onNavClick_();
         }
     }
 };

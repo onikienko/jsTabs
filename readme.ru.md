@@ -1,18 +1,18 @@
 jsTabs
 ======
-Простые javaScript табы jQuery.
+Простые javaScript табы без jQuery.
 
 Данное решение я использую только в расширениях Google Chrome. Отсюда минусы:
 
 - Не работает в IE
-- Нельзя делать ссылки на табы в пределах одной страницы (только из внешней страницы)
 
 Использование
 -------------
 В html файле:
 
 ```html
-<!-- подключение -->
+
+    <!-- подключение -->
     <link rel="stylesheet" type="text/css" href="tabs.css">
     <script type="text/javascript" src="tabs.js"></script>
 
@@ -33,11 +33,41 @@ jsTabs
     <!-- конец табов -->
 ```
 
-Инициализировать табы для такого html нужно так:
+javaScript:
 
 ```javaScript
-var main_tabs = new Tabs('#main_tabs');  //'main_tabs' - your Tabs container id's
-    main_tabs.toggle('#tab2'); //make tab2 active (first tab by default)
+
+    //Инициализизация.'#main_tabs' - id контейнера с табами. Первый таб активный.
+    var main_tabs = new Tabs('#main_tabs');
+
+    //Можно переключиться на любой таб
+    main_tabs.toggle('#tab2');
+
+    //Можно добавить обработчики событий, которые будут выполняться при переключении табов (сразу после активации таба)
+    main_tabs.onToggle(function (tab_name) {
+        console.log ('Эта функция запускается после каждого переключения табов');
+        console.log ('Сработало при переключении на ' + tab_name);
+    });
+
+    //Или задать обработчики для некоторых табов. Для этого надо передать объект {"#tab_name" : handler_function}
+     main_tabs.onToggle({
+        "#tab1": function (tab_name) {
+            console.log('Срабатывает только при переключении на ' + tab_name);
+        },
+        "#tab2": function (tab_name) {
+            console.log('Это обработчик для  ' + tab_name);
+        }
+     });
+
+     //Можно добавить обработчики при создании табов
+     var new_tabs = new Tabs('#tabs_id', function (tab_name) { /*Будет выполняться после каждого переключения табов*/ });
+
+     //Или так
+     var another_tabs = new Tabs('#another_tabs_id', {
+        "#another_tab2": function () {},
+        "#another_tab5": function () {}
+     });
+
 ```
 
 [demo](http://sbox.pp.ua/jstabs/demo.html)

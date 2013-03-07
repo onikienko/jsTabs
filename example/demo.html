@@ -130,9 +130,22 @@
 <script type="text/javascript" src="tabs.js"></script>
 
 <script>
+
     var main_tabs = new Tabs('#main_tabs'),
-        ya_tabs = new Tabs('#ya_tabs');
-    ya_tabs.toggle('#ya2'); //make ya3 tab active
+        ya_tabs = new Tabs('#ya_tabs', function () {
+            console.log('Bind onToggle handler during #ya_tabs creation');
+        });
+
+    main_tabs.toggle('#tab2'); //make #tab2 tab active
+
+    main_tabs.onToggle(function () {
+        console.log('It fires on every toggle');
+    });
+    main_tabs.onToggle({
+        '#tab1': function (tab_name) {
+            console.log('It fires only on ' + tab_name + ' toggle');
+        }
+    });
 </script>
 
 </body>

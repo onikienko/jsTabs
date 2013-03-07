@@ -2,16 +2,16 @@ jsTabs
 ======
 Simple javaScript Tabs with no jQuery.
 
-I use it only in Google Chrome extensions.
+I use it only for Google Chrome extensions.
 
 - Don't work in IE
 
 Usage
 -----
-In your html file:
+HTML:
 
 ```html
-<!--  -->
+
     <link rel="stylesheet" type="text/css" href="tabs.css">
     <script type="text/javascript" src="tabs.js"></script>
 
@@ -28,14 +28,43 @@ In your html file:
                 <div id="tab2">Tab2 content</div>
             </div>
         </section>
+
     <!-- Tabs end -->
+
 ```
 
-Init Tabs:
+javaScript:
 
 ```javaScript
-var main_tabs = new Tabs('#main_tabs');  //'main_tabs' - your Tabs container id's
-    main_tabs.toggle('#tab2'); //make tab2 active (first tab by default)
+
+    //Init. '#main_tabs' is your Tabs container id's. The first tab will be activated.
+    var main_tabs = new Tabs('#main_tabs');
+
+    //make tab2 active
+    main_tabs.toggle('#tab2');
+
+    //Add onToggle event handlers
+    main_tabs.onToggle(function (tab_name) {
+        console.log ('It fires on every tab');
+        console.log ('Fired on ' + tab_name);
+    });
+
+    //Or bind handlers only for some tabs
+     main_tabs.onToggle({
+        "#tab1": function (tab_name) {
+            console.log('It's ' + tab_name);
+        }
+     });
+
+     //You may bind onToggle event handlers during Tabs init
+     var new_tabs = new Tabs('#tabs_id', function (tab_name) { });
+
+     //Or
+     var another_tabs = new Tabs('#another_tabs_id', {
+        "#another_tab2": function () {},
+        "#another_tab5": function () {}
+     });
+
 ```
 
 [demo](http://sbox.pp.ua/jstabs/demo.html)
