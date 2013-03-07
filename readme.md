@@ -52,7 +52,7 @@ javaScript:
     //Or bind handlers only for some tabs
      main_tabs.onToggle({
         "#tab1": function (tab_name) {
-            console.log('It's ' + tab_name);
+            console.log('On ' + tab_name);
         }
      });
 
