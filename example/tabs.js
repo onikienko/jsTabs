@@ -1,15 +1,17 @@
 /**
  * jsTabs. No jQuery. Do not work with IE
  * https://github.com/onikienko/jsTabs
- * @version 0.3
+ * @version 0.3.1
  *
  * @param {string} tabs_id  ID of Tabs container with #
- * @param {function|object} [handlers] onToggle handlers.
+ * @param {function|object} [handlers] onToggle handlers
  * @constructor
  */
 function Tabs(tabs_id, handlers) {
     this.html = document.querySelector(tabs_id);
     this.nav_links = this.html.querySelectorAll('.tabs_nav li a');
+    this.ontoggle_handlers_list = {};
+
     var self = this;
     this.nav_links_array = (function () {
         var arr = [];
@@ -25,11 +27,9 @@ function Tabs(tabs_id, handlers) {
 }
 
 Tabs.prototype = {
-    ontoggle_handlers_list_: {},
-
     fireOnToggle_: function (tab_name) {
-        if (this.ontoggle_handlers_list_.hasOwnProperty(tab_name) && this.ontoggle_handlers_list_[tab_name].length > 0) {
-            this.ontoggle_handlers_list_[tab_name].forEach(function (handler) {
+        if (this.ontoggle_handlers_list.hasOwnProperty(tab_name) && this.ontoggle_handlers_list[tab_name].length > 0) {
+            this.ontoggle_handlers_list[tab_name].forEach(function (handler) {
                 handler(tab_name);
             });
         }
@@ -60,10 +60,10 @@ Tabs.prototype = {
             self = this;
 
         function addHandler(tab_name, handler) {
-            if (!self.ontoggle_handlers_list_[tab_name]) {
-                self.ontoggle_handlers_list_[tab_name] = [];
+            if (!self.ontoggle_handlers_list[tab_name]) {
+                self.ontoggle_handlers_list[tab_name] = [];
             }
-            self.ontoggle_handlers_list_[tab_name].push(handler);
+            self.ontoggle_handlers_list[tab_name].push(handler);
         }
 
         if (typeof handlers === 'function') {
