@@ -6,6 +6,8 @@ I use it only for Google Chrome extensions.
 
 - Don't work in IE
 
+[Русская документация] (https://github.com/onikienko/jsTabs/blob/master/readme.ru.md)
+
 Usage
 -----
 HTML:
@@ -68,5 +70,7 @@ javaScript:
 ```
 
 [demo](http://sbox.pp.ua/jstabs/demo.html)
+
+[Русская документация] (https://github.com/onikienko/jsTabs/blob/master/readme.ru.md)
 
 [GitHub](https://github.com/onikienko/jsTabs)
