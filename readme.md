@@ -1,12 +1,13 @@
 jsTabs
 ======
+
+[Русская документация] (https://github.com/onikienko/jsTabs/blob/master/readme.ru.md)
+
 Simple javaScript Tabs with no jQuery.
 
 I use it only for Google Chrome extensions.
 
 - Don't work in IE
-
-[Русская документация] (https://github.com/onikienko/jsTabs/blob/master/readme.ru.md)
 
 Usage
 -----
