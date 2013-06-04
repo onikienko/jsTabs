@@ -37,7 +37,7 @@ Tabs.prototype = {
 
     toggle: function (tab_name) {
         if (tab_name && this.nav_links_array.indexOf(tab_name) !== -1) {
-            [].forEach.call(this.html.querySelectorAll('.tabs_content div'), function (el) {
+            [].forEach.call(this.html.querySelectorAll('.tabs_content>div'), function (el) {
                 el.style.display = ('#' + el.id === tab_name) ? 'block' : 'none';
             });
             [].forEach.call(this.nav_links, function (el) {
