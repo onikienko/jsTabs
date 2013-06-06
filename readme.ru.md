@@ -6,6 +6,8 @@ jsTabs
 
 - Не работает в IE
 
+[Demo](http://sbox.pp.ua/jstabs/demo.html)
+
 Использование
 -------------
 В html файле:
@@ -70,7 +72,7 @@ javaScript:
 
 ```
 
-[demo](http://sbox.pp.ua/jstabs/demo.html)
+[Demo](http://sbox.pp.ua/jstabs/demo.html)
 
 [GitHub](https://github.com/onikienko/jsTabs)
 
