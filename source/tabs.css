@@ -29,6 +29,3 @@ ul.tabs_nav {
     border-top: 1px solid #dddddd;
     padding: 20px;
 }
-.tabs_content > div {
-    display: none;
-}
