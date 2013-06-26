@@ -1,9 +1,13 @@
 jsTabs
 ======
 
-[Русская документация] (https://github.com/onikienko/jsTabs/blob/master/readme.ru.md)
+[Русская документация](https://github.com/onikienko/jsTabs/blob/master/readme.ru.md)
 
-Simple javaScript Tabs with no jQuery.
+Simple javaScript Tabs.
+
+- no jQuery
+- onToggle event 
+- tab link (example.com/tabs.html#tab2)
 
 I use it only for Google Chrome extensions.
 
