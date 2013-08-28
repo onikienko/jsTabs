@@ -67,7 +67,9 @@ javaScript:
      });
 
      //Можно добавить обработчики при создании табов
-     var new_tabs = new Tabs('#tabs_id', function (tab_name) { /*Будет выполняться после каждого переключения табов*/ });
+     var new_tabs = new Tabs('#tabs_id', function (tab_name) { 
+        /*Будет выполняться после каждого переключения табов*/ 
+     });
 
      //Или так
      var another_tabs = new Tabs('#another_tabs_id', {
