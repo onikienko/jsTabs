@@ -8,10 +8,7 @@ Simple javaScript Tabs.
 - no jQuery
 - onToggle event 
 - tab link (example.com/tabs.html#tab2)
-
-I use it only for Google Chrome extensions.
-
-- Don't work in IE
+- IE 10+
 
 [Demo](http://sbox.pp.ua/jstabs/demo.html)
 
