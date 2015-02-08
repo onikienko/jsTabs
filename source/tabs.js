@@ -82,7 +82,14 @@ Tabs.prototype = {
     onNavClick_: function () {
         var self = this;
         self.html.querySelector('.tabs_nav').addEventListener('click', function (e) {
-            var hash = e.target.hash;
+            var hash = e.target.hash,
+                li;
+            if (!hash) {
+                if (e.target.tagName === 'LI') {
+                    li = e.target.querySelector('a');
+                    hash = li.hash;
+                }
+            }
             if (hash && self.nav_links_array.indexOf(hash) !== -1 && !e.target.parentElement.classList.contains('active')) {
                 self.toggle(hash);
             }
