@@ -1,7 +1,6 @@
 /**
- * jsTabs. No jQuery. Do not work with IE
+ * jsTabs. No jQuery. IE 10+
  * https://github.com/onikienko/jsTabs
- * @version 0.3.1
  *
  * @param {string} tabs_id  ID of Tabs container with #
  * @param {function|object} [handlers] onToggle handlers
